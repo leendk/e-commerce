@@ -36,6 +36,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    const homeSection = document.getElementById('home-section');
+
+    const perfumeBtn = document.getElementById('perfume-back-to-top');
+    
+
+window.addEventListener('scroll', () => {
+    if (!homeSection || !perfumeBtn) return;
+
+    const homeBottom = homeSection.offsetHeight;
+
+    if (window.scrollY > homeBottom) {
+        perfumeBtn.style.display = 'block'; // إظهار الزر بعد الخروج من Home
+    } else {
+        perfumeBtn.style.display = 'none'; // إخفاء الزر داخل Home
+    }
+});
+
+    perfumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    const bottle = document.getElementById('perfume-bottle');
+     bottle.addEventListener('click', () => {
+    bottle.classList.toggle('open');
+  });
+
 
     // Close menu when clicking outside (mobile)
     document.addEventListener('click', function(e) {
@@ -267,7 +294,29 @@ document.addEventListener('DOMContentLoaded', function() {
   
     if (searchInput) searchInput.value = "";
   }
-  
+  // ✅ الرجوع للصفحة الرئيسية عند الضغط على Home
+const homeLink = document.querySelector('a[href="#home"]');
+if (homeLink) {
+  homeLink.addEventListener('click', function(e) {
+    e.preventDefault(); // منع السلوك الافتراضي
+    
+    const homeSection = document.getElementById("home-section");
+    const productsSection = document.getElementById("products-section");
+    const searchResultsSection = document.getElementById("search-results");
+    const searchResults = document.getElementById("searchResultsContainer");
+    
+    if (homeSection) homeSection.style.display = "";
+    if (productsSection) productsSection.style.display = "";
+    if (searchResultsSection && searchResults) {
+      searchResultsSection.style.display = "none";
+      searchResults.innerHTML = "";
+    }
+
+    // رجوع لأعلى الصفحة
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
     
 
     function showSearchMessage(message, type) {
@@ -371,12 +420,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return productDiv;
     }
 
+  
     function displayAllProducts() {
-        const recommendedProducts = perfumes.filter(p => p.category === 'recommended');
+        // عرض أول 4 منتجات فقط في قسم Recommended
+        const recommendedProducts = perfumes
+            .filter(p => p.category === 'recommended')
+            .slice(0, 3); // هنا أخذ أول 4 عناصر فقط
+    
         const popularProducts = perfumes.filter(p => p.category === 'popular');
+    
         displayProducts(recommendedProducts, 'recommended');
         displayProducts(popularProducts, 'popular');
     }
+    
 
     function displayFilteredProducts(filteredProducts) {
         displayProducts(filteredProducts.filter(p => p.category === 'recommended'), 'recommended');

@@ -93,6 +93,32 @@ header .icons .cart-icon {
     width: 3rem;
     height: 3rem;
 }
+.perfume-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* يبدأ مخفي */
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .perfume-btn:hover {
+    transform: scale(1.1);
+  }
+  #bottle-cap {
+    transform-origin: center top;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  /* عند الضغط، يتحرك الغطاء لأعلى */
+  .open #bottle-cap {
+    transform: translateY(-50px) rotate(-20deg);
+  }
+
+  
+  
 
 /* تحديث تنسيق السلة */
 header .icons .cart-icon {
@@ -486,9 +512,16 @@ header .icons .icon-link.active {
     box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+#search-results {
+    margin-top: 9rem;   /* نزّل النتائج لتحت تحت الهيدر */
+    padding: 2rem;      /* مسافة داخلية للراحة */
+  }
+  
 #searchResults {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    
+      
     gap: 1.5rem;
   }
   /* تنسيق نتائج البحث كشبكة */
