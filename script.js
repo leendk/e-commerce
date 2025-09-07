@@ -241,14 +241,7 @@ window.addEventListener('scroll', () => {
             category: 'recommended',
             description: 'Clean and fresh Japanese fragrance inspired by nature'
         },
-        {
-            id: 20,
-            name: 'Dolce & Gabbana Light Blue',
-            price: 100,
-            image: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=300&h=300&fit=crop',
-            category: 'popular',
-            description: 'Refreshing summer fragrance inspired by the Mediterranean Sea'
-        }
+        
     ];
 
     // وظيفة البحث
