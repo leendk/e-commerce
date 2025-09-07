@@ -243,6 +243,38 @@ window.addEventListener('scroll', () => {
         },
         
     ];
+    function initPopularCarousel() {
+        const track = document.getElementById('popular');
+        const cards = track.children;
+        const cardWidth = cards[0].offsetWidth + 20; // 20 = margin
+        const totalWidth = cards.length * cardWidth;
+        const containerWidth = track.parentElement.offsetWidth;
+    
+        let index = 0;
+        let direction = 1; // 1 = لليسار, -1 = لليمين
+    
+        setInterval(() => {
+            index += direction;
+    
+            // لو وصل للنهاية، يغير الاتجاه
+            if (index * cardWidth >= totalWidth - containerWidth) {
+                direction = -1; // ارجع لليمين
+            } 
+            // لو رجع للبداية، يغير الاتجاه
+            else if (index <= 0) {
+                direction = 1; // امشي لليسار
+            }
+    
+            track.style.transform = `translateX(-${index * cardWidth}px)`;
+            track.style.transition = "transform 0.5s ease"; // حركة سلسة
+        }, 2000); // كل ثانيتين يتحرك
+    }
+    
+    // بعد تحميل الصفحة
+    window.addEventListener('load', () => {
+        initPopularCarousel();
+    });
+    
 
     // وظيفة البحث
    // وظيفة البحث

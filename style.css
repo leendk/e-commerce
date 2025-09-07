@@ -351,7 +351,22 @@ header .icons .icon-link.active {
         transform: translateX(0);
     }
 }
-
+.carousel {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+  
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .product-card {
+    flex: 0 0 200px; /* عرض كل بطاقة */
+    margin: 0 10px;
+  }
+  
 /* رسائل البحث */
 .search-message {
     position: absolute;
