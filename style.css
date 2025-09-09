@@ -59,11 +59,12 @@ header{
     box-shadow: 0 .5rem 1rem rgba(0,0,0, .1);
 
 }
-header .logo{
+header .logo {
     font-size: 3rem;
-    color: #333;
+    color: var(--pink);  /* زهري دائم */
     font-weight: bolder;
 }
+
 header .logo span{
     color: var(--pink);   
 }
@@ -400,6 +401,7 @@ header .icons .icon-link.active {
     color: #0c5460;
     border: 1px solid #bee5eb;
 }
+
 
 @keyframes slideDown {
     from {
@@ -876,7 +878,9 @@ header .icons .icon-link.active {
 .cart-overlay.active {
     display: block;
 }
-
+.close-cart-btn {
+    display: none;
+  }
 
 .site-footer {
     background: #050505; /* near-black */
@@ -1150,82 +1154,98 @@ header .icons .icon-link.active {
 
 
 }
-@media (max-width:450px){
-    html{
-        font-size: 50%;
-
-    }
-    header{
-        padding: 2rem;
-    }
-    .home .content h6{
-        font-size: 1.3rem;
-        letter-spacing: 1px;
-        margin-bottom: 1.5rem;
-    }
-    .home .content span{
-        font-size: 3.5rem;
-        line-height: 1.1;
-    }
-
-    /* تنسيق أيقونة السلة للشاشات الصغيرة */
-    header .icons .cart-icon {
-        width: 2.2rem;
-        height: 2.2rem;
-    }
-
-    header .icons .cart-icon svg {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
-
-    header .icons .cart-icon .cart-dot {
-        width: 4px;
-        height: 4px;
-    }
-
-    /* شريط البحث مخفي للشاشات الصغيرة */
+/* ✅ الوضع الافتراضي (شاشات كبيرة) */
+.search-container {
+    display: block;   /* يظهر شريط البحث */
+  }
+  
+  .mobile-search-icon {
+    display: none;    /* الأيقونة مخفية */
+  }
+  
+  /* ✅ للشاشات الصغيرة */
+  @media (max-width: 450px) {
+    /* إخفاء شريط البحث */
     .search-container {
-        display: none;
+      display: none;
     }
-
-    /* إظهار أيقونة البحث للموبايل */
+  
+    /* إظهار أيقونة البحث فقط */
     .mobile-search-icon {
-        display: inline-block;
+      display: inline-block;
     }
-
+  
     header {
-        flex-wrap: wrap;
+      flex-wrap: wrap;
     }
-
-    /* تصميم المنتجات للموبايل */
+  
+    .home .content h6 {
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+    }
+    .home .content span {
+      font-size: 3.5rem;
+      line-height: 1.1;
+    }
+  
+    /* أيقونة السلة */
+    header .icons .cart-icon {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+    header .icons .cart-icon svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+    header .icons .cart-icon .cart-dot {
+      width: 4px;
+      height: 4px;
+    }
+  
+    /* المنتجات */
     .product-list {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
-
     .product-card {
-        margin: 0 auto;
-        max-width: 350px;
+      margin: 0 auto;
+      max-width: 350px;
     }
-
+  
+    /* السلة */
     .cart-sidebar {
-        width: 100%;
-        right: -100%;
+      width: 100%;
+      right: -100%;
+      border-radius: 0;
     }
-
+    .cart-header {
+      position: relative; /* للزر */
+      padding: 1rem 0.8rem;
+    }
+    .close-cart-btn {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2.6rem;
+      width: 3.6rem;
+      height: 3.6rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+  
     .cart-item {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
     }
-
     .cart-item-info {
-        width: 100%;
+      width: 100%;
     }
-
     .cart-item-controls {
-        width: 100%;
-        justify-content: space-between;
+      width: 100%;
+      justify-content: space-between;
     }
-}
+  }
+  

@@ -83,7 +83,111 @@ window.addEventListener('scroll', () => {
     const mobileSearchIcon = document.querySelector('.mobile-search-icon');
     const searchContainer = document.querySelector('.search-container');
     const searchResultsSection = document.getElementById("search-results");        // يطابق HTML
-    const searchResults = document.getElementById("searchResultsContainer");       // يطابق HTML
+    const searchResults = document.getElementById("searchResultsContainer");
+
+// ======= Search state and helpers (added: debounce + returnHome) =======
+let hasSearched = false;
+
+/**
+ * returnHome()
+ * يعيد الواجهة إلى قسم الـ Home ويخفي نتائج البحث
+ */
+ 
+function returnHome() {
+  const homeSection = document.getElementById("home-section");
+  const productsSection = document.getElementById("products-section");
+  const searchResultsSection = document.getElementById("search-results");
+  const searchResults = document.getElementById("searchResultsContainer");
+  const searchContainer = document.querySelector('.search-container');
+  const mobileSearchIcon = document.querySelector('.mobile-search-icon');
+  const toggler = document.getElementById('toggler');
+  const navbar = document.querySelector('.navbar');
+  const header = document.querySelector('header') || document.querySelector('.header');
+
+  // 1) إظهار Home وإظهار الـ Products
+  if (homeSection) homeSection.style.display = "";
+  if (productsSection) productsSection.style.display = "";
+
+  // 2) إخفاء نتائج البحث وإفراغها
+  if (searchResultsSection && searchResults) {
+    searchResultsSection.style.display = "none";
+    searchResults.innerHTML = "";
+  }
+
+  // 3) إرجاع حاوية البحث (mobile search) إلى حالتها الافتراضية
+  if (searchContainer) {
+    ['display','position','top','left','right','zIndex','background','padding','borderRadius','boxShadow'].forEach(prop => {
+      searchContainer.style[prop] = '';
+    });
+    searchContainer.classList.remove('open');
+  }
+
+  // 4) إن كان هناك زر العودة إلى الرئيسية داخل النتائج، احذفه
+  const backBtn = document.getElementById('searchBackHomeBtn');
+  if (backBtn) backBtn.remove();
+
+  // 5) إغلاق القائمة المحمولة إن كانت مفتوحة (toggler)
+  if (toggler) toggler.checked = false;
+  if (navbar) {
+    navbar.style.clipPath = '';
+    navbar.classList.remove('active');
+    navbar.style.position = '';
+    navbar.style.top = '';
+  }
+
+  // 6) إزالة أي ستايلات على الهيدر أو البودي قد تكون مسببة لتغطية المحتوى
+  if (header) {
+    header.style.position = '';
+    header.style.top = '';
+    header.style.zIndex = '';
+  }
+  document.body.style.overflow = '';
+  document.documentElement.style.paddingTop = '';
+
+  // 7) تنظيف الحقل وإعادة الحالة
+  if (typeof searchInput !== 'undefined' && searchInput) searchInput.value = '';
+  if (typeof hasSearched !== 'undefined') hasSearched = false;
+
+  // 8) إزالة التركيز من أي عنصر و النزول لأعلى (بـ slight timeout لضمان إعادة الانماط أولاً)
+  setTimeout(() => {
+    if (document.activeElement) document.activeElement.blur && document.activeElement.blur();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 50);
+}
+
+  
+/**
+ * debounce(fn, delay)
+ * دالة مساعدة لتأخير تنفيذ الدوال (تفادي تنفيذ متكرر أثناء الكتابة)
+ */
+function debounce(fn, delay) {
+  let timer = null;
+  return function(...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  }
+}
+
+// إذا أصبح حقل البحث فارغاً بعد كتابة سريعة، نعود للـ Home (باستخدام debounce)
+if (typeof searchInput !== 'undefined' && searchInput) {
+  const debouncedEmptyCheck = debounce(function() {
+    const val = searchInput.value.trim();
+    if (val === '' && hasSearched) {
+      returnHome();
+    }
+  }, 350);
+
+  searchInput.addEventListener('input', debouncedEmptyCheck);
+
+  // زر Escape يمسح ويعود للصفحة الرئيسية فوراً
+  searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      searchInput.value = '';
+      returnHome();
+    }
+  });
+}
+       // يطابق HTML
 
 
 
@@ -157,7 +261,7 @@ window.addEventListener('scroll', () => {
             id: 9,
             name: 'Givenchy Gentleman',
             price: 140,
-            image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=300&h=300&fit=crop',
+            image: 'assets/photo-1592945403244-b3fbafd7f539.jpg',
             category: 'recommended',
             description: 'Luxury masculine fragrance with wood and spice notes'
         },
@@ -287,6 +391,9 @@ window.addEventListener('scroll', () => {
     const results = perfumes.filter(p =>
       p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+  // علامة أن المستخدم أجرى عملية بحث (تُستخدم مع الإعادة التلقائية عند تفريغ الحقل)
+  hasSearched = true;
+
   
     const homeSection = document.getElementById("home-section");
     const productsSection = document.getElementById("products-section");
@@ -317,7 +424,7 @@ window.addEventListener('scroll', () => {
       displayAllProducts();
     }
   
-    if (searchInput) searchInput.value = "";
+
   }
   // ✅ الرجوع للصفحة الرئيسية عند الضغط على Home
 const homeLink = document.querySelector('a[href="#home"]');
