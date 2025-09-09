@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
 window.addEventListener('scroll', () => {
-    if (!homeSection || !perfumeBtn) return;
+    if (!perfumeBtn) return;
 
     const homeBottom = homeSection.offsetHeight;
 
-    if (window.scrollY > homeBottom) {
+    if (window.scrollY > 200) {
         perfumeBtn.style.display = 'block'; // إظهار الزر بعد الخروج من Home
     } else {
         perfumeBtn.style.display = 'none'; // إخفاء الزر داخل Home
@@ -391,13 +391,13 @@ if (typeof searchInput !== 'undefined' && searchInput) {
     const results = perfumes.filter(p =>
       p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  // علامة أن المستخدم أجرى عملية بحث (تُستخدم مع الإعادة التلقائية عند تفريغ الحقل)
+  
   hasSearched = true;
 
   
     const homeSection = document.getElementById("home-section");
     const productsSection = document.getElementById("products-section");
-    // مافي about-section في HTML، لذلك لا نستخدمه
+    
   
     if (results.length > 0) {
       if (homeSection) homeSection.style.display = "none";
@@ -426,11 +426,11 @@ if (typeof searchInput !== 'undefined' && searchInput) {
   
 
   }
-  // ✅ الرجوع للصفحة الرئيسية عند الضغط على Home
+  
 const homeLink = document.querySelector('a[href="#home"]');
 if (homeLink) {
   homeLink.addEventListener('click', function(e) {
-    e.preventDefault(); // منع السلوك الافتراضي
+    e.preventDefault(); 
     
     const homeSection = document.getElementById("home-section");
     const productsSection = document.getElementById("products-section");

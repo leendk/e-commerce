@@ -61,7 +61,7 @@ header{
 }
 header .logo {
     font-size: 3rem;
-    color: var(--pink);  /* زهري دائم */
+    color: var(--pink);  
     font-weight: bolder;
 }
 
@@ -85,7 +85,6 @@ header .icons a:hover{
     color: var(--pink);
 }
 
-/* تنسيق أيقونة السلة */
 header .icons .cart-icon {
     position: relative;
     display: inline-flex;
@@ -98,7 +97,7 @@ header .icons .cart-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    display: none; /* يبدأ مخفي */
+    display: none; 
     z-index: 1000;
     cursor: pointer;
     transition: transform 0.3s;
@@ -113,7 +112,7 @@ header .icons .cart-icon {
     cursor: pointer;
   }
 
-  /* عند الضغط، يتحرك الغطاء لأعلى */
+  
   .open #bottle-cap {
     transform: translateY(-50px) rotate(-20deg);
   }
@@ -121,7 +120,7 @@ header .icons .cart-icon {
   
   
 
-/* تحديث تنسيق السلة */
+
 header .icons .cart-icon {
     position: relative;
     display: inline-flex;
@@ -151,7 +150,7 @@ header .icons .cart-icon .cart-dot {
 header #toggler{
     display: none;
 }
-/* أيقونة الهامبرغر */
+
 header .hamburger-menu{
     font-size: 3rem;
     color: var(--ast-global-color-3);
@@ -174,8 +173,6 @@ header .hamburger-menu .hamburger-icon{
     display: block;
 }
 
-/* أيقونات الشريط العلوي */
-/* اللون الافتراضي */
 header .icons .icon-link {
     font-size: 2.5rem;
     color: var(--ast-global-color-3);
@@ -190,24 +187,22 @@ header .icons .icon-link:hover {
     transform: scale(1.1);
   }
   
-  /* عند الضغط (تفعيل) */
+ 
 header .icons .icon-link.active {
     color: var(--pink) !important;
   }
-/* السلة (SVG) الافتراضية */
+
 .cart-wrapper svg path {
-    fill: var(--ast-global-color-3); /* نفس اللون الافتراضي للأيقونات */
+    fill: var(--ast-global-color-3); 
     transition: fill 0.3s ease;
   }
   
-  /* عند التفعيل */
+ 
 .cart-wrapper.active svg path {
     fill: var(--pink) !important;
   }
     
   
-
-/* اللون الافتراضي */
 .active-icon {
     color: var(--pink) !important;
   }
@@ -216,7 +211,7 @@ header .icons .icon-link.active {
     fill: var(--pink) !important;
   }
   
-/* أيقونات محددة */
+
 .heart-icon, .user-icon {
     font-size: 2.5rem;
     display: block;
@@ -361,14 +356,15 @@ header .icons .icon-link.active {
   .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    flex-wrap: nowrap;
   }
   
   .product-card {
-    flex: 0 0 200px; /* عرض كل بطاقة */
+    flex: 0 0 auto; 
     margin: 0 10px;
   }
   
-/* رسائل البحث */
+
 .search-message {
     position: absolute;
     top: 100%;
@@ -420,17 +416,17 @@ header .icons .icon-link.active {
     background: url('assets/bg-01.jpg') no-repeat;
     background-size: cover;
     background-position: center ; 
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed; 
     padding: 0 10%;
 }
 
 .home .content {
     max-width: 65rem;
     position: relative;
-    z-index: 2; /* عشان يبان فوق الـ overlay */
+    z-index: 2; 
   }
   .home .content h6 {
-    font-size: 1.8rem;   /* حجم متوسط للعنوان الفرعي */
+    font-size: 1.8rem;   
     font-weight: 400;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -440,13 +436,13 @@ header .icons .icon-link.active {
   }
 
   .home .content h1 {
-    font-size: 0; /* إخفاء حجم خط h1 الافتراضي */
+    font-size: 0; 
     line-height: 1.2;
     margin-bottom: 3rem;
   }
 
   .home .content span{
-    font-size: 6.5rem;   /* حجم أكبر وأكثر بروزاً */
+    font-size: 6.5rem;   
     color: #333;
     padding: 0.2rem 0;
     line-height: 1.1;
@@ -455,8 +451,6 @@ header .icons .icon-link.active {
     letter-spacing: -1px;
 }
 
-
-/* تنسيق الأقسام الأخرى */
 .hero {
     text-align: center;
     padding: 4rem 9%;
@@ -476,6 +470,7 @@ header .icons .icon-link.active {
 
 .products {
     padding: 4rem 9%;
+    
 }
 
 
@@ -528,7 +523,7 @@ header .icons .icon-link.active {
     margin-bottom: 4rem;
 }
 
-/* بطاقات المنتجات */
+
 .product-card {
     background: #fff;
     border-radius: 1rem;
@@ -537,8 +532,8 @@ header .icons .icon-link.active {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 #search-results {
-    margin-top: 9rem;   /* نزّل النتائج لتحت تحت الهيدر */
-    padding: 2rem;      /* مسافة داخلية للراحة */
+    margin-top: 9rem;   
+    padding: 2rem;     
   }
   
 #searchResults {
@@ -712,7 +707,7 @@ header .icons .icon-link.active {
     color: #e60073;
 }
 
-/* عناصر السلة */
+
 .cart-item {
     display: flex;
     justify-content: space-between;
@@ -829,7 +824,7 @@ header .icons .icon-link.active {
     background: #e60073;
 }
 
-/* عداد السلة */
+
 .cart-count {
     position: absolute;
     top: -8px;
@@ -863,7 +858,7 @@ header .icons .icon-link.active {
     transform: scale(1.1);
 }
 
-/* Overlay */
+
 .cart-overlay {
     position: fixed;
     top: 0;
@@ -883,7 +878,7 @@ header .icons .icon-link.active {
   }
 
 .site-footer {
-    background: #050505; /* near-black */
+    background: #050505; 
     color: #e6e6e6;
     font-family: 'Cormorant Garamond', serif;
     padding: 6.5rem 9%;
@@ -900,7 +895,7 @@ header .icons .icon-link.active {
     margin: 0 auto 2rem;
   }
   
-  /* Column basics */
+
   .footer-col { min-width: 0; }
   .footer-title {
     font-size: 1.9rem;
@@ -911,7 +906,7 @@ header .icons .icon-link.active {
     text-transform: uppercase;
   }
   
-  /* Brand column (logotype) */
+
   .brand-logo {
     display: flex;
     flex-direction: column;
@@ -930,7 +925,7 @@ header .icons .icon-link.active {
     letter-spacing: 4px;
   }
   
-  /* description */
+
   .brand-desc {
     color: #d9d9d9;
     max-width: 28rem;
@@ -938,7 +933,7 @@ header .icons .icon-link.active {
     font-size: 1.45rem;
   }
   
-  /* Customer care column */
+  
   .care-text {
     font-size: 1.45rem;
     color: #dcdcdc;
